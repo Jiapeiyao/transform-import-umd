@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "dist",
     "strict": true,
     // "skipDefaultLibCheck": true,
-    "module": "es6",
+    "skipLibCheck": true,
+    "module": "CommonJS",
     "moduleResolution": "node",
     "target": "es6",
     "allowSyntheticDefaultImports": true,
@@ -25,6 +26,6 @@
     ],
     "baseUrl": "."
   },
-  "include": ["./**/*"],
-  "exclude": ["node_modules", "dist", "release", "out"]
+  "include": ["src/*"],
+  "exclude": ["node_modules", "dist", "release", "out", "**/*.spec.ts"]
 }

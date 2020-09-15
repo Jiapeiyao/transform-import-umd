@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import types from '@babel/types';
 
 interface Path {
@@ -24,7 +25,7 @@ interface State {
  *     In = antd.Input;
  * var Drawer = antd.Drawer;
  */
-export default function transferUmd({ types: t }: { types: typeof types }) {
+export default function transferImportUmd({ types: t }: { types: typeof types }) {
   return {
     visitor: {
       ImportDeclaration: (path: Path, state: State) => {
@@ -69,15 +70,18 @@ function getVariableDeclarators(
   return variableDeclarators;
 }
 
-
 /**
  * 'a/b/c' => a["b"]["c"]
- * 
- * @param sourcePath 
- * @param t 
- * @param externals 
+ *
+ * @param sourcePath source path like 'a/b/c'
+ * @param t babel's types
+ * @param externals externals' option setting
  */
-function transferSourcePath(sourcePath: string, t: typeof types, externals: Record<string, string>) {
+function transferSourcePath(
+  sourcePath: string,
+  t: typeof types,
+  externals: Record<string, string>,
+) {
   const [libName, ...properties] = sourcePath.split('/');
   return properties.reduce<types.Identifier | types.MemberExpression>(
     (object, property: string) => t.memberExpression(object, t.stringLiteral(property), true),
@@ -87,10 +91,10 @@ function transferSourcePath(sourcePath: string, t: typeof types, externals: Reco
 
 /**
  * Skip import statement likes "import React from 'react'", because they should be imported in UMD
- * 
- * @param local 
- * @param sourcePath 
- * @param externals 
+ *
+ * @param local
+ * @param sourcePath
+ * @param externals
  */
 function isExpectedImport(local: string, sourcePath: string, externals: Record<string, string>) {
   const isUmdExternal = externals[sourcePath] === local;
