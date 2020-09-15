@@ -1,2 +1,2 @@
 # transform-import-umd
-babel and webpack plugins to transform es modules import to umd accessment
+babel and webpack plugins to transform es6 modules import to umd accessment
