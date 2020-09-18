@@ -1,0 +1,24 @@
+{
+  "name": "transform-import-umd-webpack-plugin",
+  "version": "0.0.1",
+  "description": "webpack plugin that tranforms es6 modules importing to umd module accessment",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p ./"
+  },
+  "type": "module",
+  "author": "Jiapeiyao",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "@types/webpack": "^4.41.22",
+    "@umijs/fabric": "^2.2.2",
+    "eslint": "^7.9.0",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": true,
+    // "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "lib": [
+      "esnext",
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020"
+    ],
+    "baseUrl": "."
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules", "dist", "release", "out", "**/*.spec.ts"]
+}
