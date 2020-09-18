@@ -27,7 +27,27 @@ test("import React from 'react';", () => {
   expect(result?.code).toBe('');
 });
 
-test("import React, { useState } from 'react';", () => {
+test("import React2 from 'react';", () => {
+  const result = transformSync("import React2 from 'react';", options);
+  expect(result?.code).toBe('const React2 = React;');
+});
+
+test("import * as antd from 'antd';", () => {
+  const result = transformSync("import * as antd from 'antd';", options);
+  expect(result?.code).toBe('');
+});
+
+test("import * as Antd from 'antd';", () => {
+  const result = transformSync("import * as Antd from 'antd';", options);
+  expect(result?.code).toBe('const Antd = antd;');
+});
+
+test("import { useState } from 'react';", () => {
   const result = transformSync("import React, { useState } from 'react';", options);
   expect(result?.code).toBe('const useState = React.useState;');
+});
+
+test("import { useState as useState2 } from 'react';", () => {
+  const result = transformSync("import React, { useState as useState2 } from 'react';", options);
+  expect(result?.code).toBe('const useState2 = React.useState;');
 });
