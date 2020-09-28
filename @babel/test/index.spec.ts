@@ -10,7 +10,8 @@ const options: TransformOptions = {
         externals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          antd: 'antd',
+          'antd/lib': 'antd',
+          '@scope/my-lib': 'MyLib',
         },
       },
     ],
@@ -32,8 +33,8 @@ test("import React2 from 'react';", () => {
   expect(result?.code).toBe('const React2 = React;');
 });
 
-test("import * as antd from 'antd';", () => {
-  const result = transformSync("import * as antd from 'antd';", options);
+test("import * as React from 'react';", () => {
+  const result = transformSync("import * as React from 'react';", options);
   expect(result?.code).toBe('');
 });
 
@@ -50,4 +51,14 @@ test("import { useState } from 'react';", () => {
 test("import { useState as useState2 } from 'react';", () => {
   const result = transformSync("import React, { useState as useState2 } from 'react';", options);
   expect(result?.code).toBe('const useState2 = React.useState;');
+});
+
+test("import Button from 'antd/lib/button';", () => {
+  const result = transformSync("import Button from 'antd/lib/button';", options);
+  expect(result?.code).toBe('const Button = antd["button"];');
+});
+
+test("import someFunction from '@scope/my-lib';", () => {
+  const result = transformSync("import someFunction from '@scope/my-lib/someFunction';", options);
+  expect(result?.code).toBe('const someFunction = MyLib["someFunction"];');
 });

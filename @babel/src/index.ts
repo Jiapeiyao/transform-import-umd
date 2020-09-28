@@ -82,10 +82,15 @@ function transferSourcePath(
   t: typeof types,
   externals: Record<string, string>,
 ) {
-  const [libName, ...properties] = sourcePath.split('/');
+  const sourceLib = Object
+    .keys(externals)
+    .find(externalLib => sourcePath.startsWith(externalLib));
+  const path = sourceLib ? sourcePath.replace(sourceLib, externals[sourceLib]) : sourcePath;
+
+  const [libName, ...properties] = path.split('/');
   return properties.reduce<types.Identifier | types.MemberExpression>(
     (object, property: string) => t.memberExpression(object, t.stringLiteral(property), true),
-    t.identifier(externals[libName] ?? libName),
+    t.identifier(libName),
   );
 }
 
