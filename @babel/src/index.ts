@@ -25,7 +25,7 @@ interface State {
  *     In = antd.Input;
  * var Drawer = antd.Drawer;
  */
-export default function transferImportUmd({ types: t }: { types: typeof types }) {
+export default function transformImportUmd({ types: t }: { types: typeof types }) {
   return {
     visitor: {
       ImportDeclaration: (path: Path, state: State) => {

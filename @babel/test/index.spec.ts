@@ -1,11 +1,11 @@
 import { transformSync, TransformOptions } from "@babel/core";
-import transferImportUmd from "../src";
+import transformImportUmd from "../src";
 
 const options: TransformOptions = {
   filename: 'index.js',
   plugins: [
     [
-      transferImportUmd,
+      transformImportUmd,
       {
         externals: {
           react: 'React',
