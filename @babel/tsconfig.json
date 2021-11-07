@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "lib",
     "strict": true,
     // "skipDefaultLibCheck": true,
     "skipLibCheck": true,
@@ -26,6 +26,14 @@
     ],
     "baseUrl": "."
   },
-  "include": ["src/*"],
-  "exclude": ["node_modules", "dist", "release", "out", "**/*.spec.ts"]
+  "include": [
+    "src/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "release",
+    "out",
+    "**/*.spec.ts"
+  ]
 }

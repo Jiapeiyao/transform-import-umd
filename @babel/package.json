@@ -2,10 +2,11 @@
   "name": "babel-plugin-transform-import-umd",
   "version": "0.0.1",
   "description": "babel plugin that tranforms es6 modules importing to umd module accessment",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p ./"
+    "build": "tsc -p ./",
+    "prepublish": "tsc -p ./"
   },
   "type": "module",
   "author": "Jiapeiyao",
