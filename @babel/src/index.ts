@@ -25,8 +25,9 @@ interface State {
  *     In = antd.Input;
  * var Drawer = antd.Drawer;
  */
-export default function transformImportUmd({ types: t }: { types: typeof types }) {
+function transformImportUmd({ types: t }: { types: typeof types }) {
   return {
+    name: 'transform-import-umd',
     visitor: {
       ImportDeclaration: (path: Path, state: State) => {
         const variableDeclarators = getVariableDeclarators(path, t, state.opts?.externals ?? {});
@@ -106,3 +107,5 @@ function isExpectedImport(local: string, sourcePath: string, externals: Record<s
   const isRelativeModule = sourcePath.startsWith('.');
   return !(isUmdExternal || isRelativeModule);
 }
+
+export default transformImportUmd;
